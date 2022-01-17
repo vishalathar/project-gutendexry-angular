@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
 
-  title = 'User Portal'
-  image = "assets/network.png"
+  title = "Home";
+  user = "";
+
+  userFirstName = 'longFirstName';
+  userLastName = 'LonglastName';
+  nameOfUser = this.userFirstName + ' ' +  this.userLastName;
   constructor() { }
 
   ngOnInit(): void {
