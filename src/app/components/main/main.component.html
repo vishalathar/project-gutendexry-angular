@@ -1,61 +1,65 @@
-<div class="container ">
+<div class="container">
   <h1 class="display-1 text-center">Welcome <strong class="text-muted">{{nameOfUser}}</strong></h1>
-</div>
+
 <hr>
-<div class="container ">
+
   <h2 class=" text-center"><strong>The top 5 books are:</strong></h2>
 </div>
+<div *ngIf="bookList.count == 0">
+  <!-- If bookList is an empty object display this-->
+  {{ clientMessage.message }}
+</div>
 <div class="container">
+  <!-- If bookList is not an empty object display this-->
+<div *ngIf="bookList.count >0">
 
-  <div class="row"></div>
+<div class="row">
   <div class="card text-center">
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title">{{bookList.results[0].bookId}}</h5>
+      <a href="#" class="btn btn-primary">Go to Book Details</a>
     </div>
   </div>
+
 <div class="row">
 <div class="col-sm-6">
   <div class="card text-center">
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title">{{currentBook(1)}}</h5>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
-</div>
+
 <div class="col-sm-6">
   <div class="card text-center">
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title">{{currentBook(2)}}</h5>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 </div>
 </div>
+
 <div class="row">
 <div class="col-sm-6">
   <div class="card text-center">
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title">{{currentBook(3)}}</h5>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 </div>
+
 <div class="col-sm-6">
   <div class="card text-center">
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title">{{currentBook(4)}}</h5>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 </div>
 </div>
-
-
 </div>
-
+</div>
+</div>
+</div>
