@@ -16,11 +16,21 @@ const allUrl = `${url}/books`;
 export class BookService {
   constructor(private http: HttpClient) {}
 
-  //Get top page
+  //Get first page of all API results
   getTop(): Observable<BookList> {
-    console.log(allUrl);
     return this.http.get<BookList>(allUrl).pipe(catchError(this.handleError));
   }
+  //Get given page of API results
+  getPage(pageUrl:string): Observable<BookList> {
+    return this.http.get<BookList>(pageUrl).pipe(catchError(this.handleError));
+  }
+  //Get specific Book Details by ID
+  getBook(id:number): Observable<Book> {
+    return this.http.get<Book>(`${url}/${id}`).pipe(catchError(this.handleError));
+  }
+
+
+
   private handleError(httpError: HttpErrorResponse) {
     if (httpError.error instanceof ErrorEvent) {
       console.log('An Error occured: ', httpError.error.message);
@@ -34,6 +44,9 @@ export class BookService {
       () => new Error('Something Really Bad happened, please try again later')
     );
   }
+
+
+
 
   // Methods for getting specific properties from inside objects:
   // If accessing person or book objects inside a BookList feed the object into the correct method
