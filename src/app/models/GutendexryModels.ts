@@ -1,5 +1,6 @@
 export class Book{
 
+
   bookId: number = 0;
   bookTitle: string = '';
   bookSubjects: string[] = [];
@@ -45,6 +46,7 @@ export class Book{
         this.dlCount = jsonObj[prop];
       }
     }
+
 
   }
 

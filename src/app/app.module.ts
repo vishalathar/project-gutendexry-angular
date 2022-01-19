@@ -9,7 +9,11 @@ import { MainComponent } from './components/main/main.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AllComponent } from './components/all/all.component';
+
+import { LandingComponent } from './components/landing/landing.component';
+
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -18,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     NavComponent,
     MainComponent,
     FooterComponent,
-    AllComponent
+    AllComponent,
+    LandingComponent,
+
   ],
   imports: [
     BrowserModule,
