@@ -9,6 +9,7 @@ const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'main', component: MainComponent}, // http:localhost:4200/main
   {path: 'all', component: AllComponent},
+
   {path: 'landing', component: LandingComponent},
   {path: '**', component: MainComponent} // this is a wild card, must be last. to handle unknown paths
 
