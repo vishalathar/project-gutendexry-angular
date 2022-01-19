@@ -1,0 +1,22 @@
+
+
+#container{
+  text-align: center;
+  border: auto ;
+  width: auto;
+  height: auto;
+  padding-top: auto;
+  padding-bottom: auto;
+  }
+
+  .btn
+  {
+
+    height: 75px;
+    width: 200px;
+    display: block;
+    margin: auto;
+    border: 2px solid;
+    margin-bottom: auto;
+    font-size: 30px;
+  }

@@ -8,6 +8,8 @@ import { MainComponent } from './components/main/main.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AllComponent } from './components/all/all.component';
+import { LandingComponent } from './components/landing/landing.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { AllComponent } from './components/all/all.component';
     NavComponent,
     MainComponent,
     FooterComponent,
-    AllComponent
+    AllComponent,
+    LandingComponent,
+
   ],
   imports: [
     BrowserModule,
