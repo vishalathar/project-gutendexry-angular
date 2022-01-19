@@ -10,6 +10,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AllComponent } from './components/all/all.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RecommendComponent } from './components/recommend/recommend.component';
+import { ReadingListComponent } from './components/reading-list/reading-list.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     NavComponent,
     MainComponent,
     FooterComponent,
-    AllComponent
+    AllComponent,
+    RecommendComponent,
+    ReadingListComponent
   ],
   imports: [
     BrowserModule,
