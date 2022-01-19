@@ -18,27 +18,31 @@ export class MainComponent implements OnInit {
   userLastName = 'lastName';
   nameOfUser = this.userFirstName + ' ' +  this.userLastName;
 
+  public clientMessage: ClientMessage = new ClientMessage('sorry Book not found');
   public bookList!: BookList;
 
-  public currentBook = (target:number) =>{
-    return this.bookList.results[target]
-  }
 
-  public clientMessage: ClientMessage = new ClientMessage('Sorry no books found')
-  ;
+
 
 
 
   constructor(private bookService: BookService) {
-    this.findTopBooks()
+    this.findFirstBooks()
    }
 
-  findTopBooks(){
+  findFirstBooks(){
     this.bookService.getTop()
       .subscribe(data =>{
         this.bookList = data;
+        console.log(this.bookList)
       })
-      console.log(this.bookList);
+  }
+
+  public getBookId(target: number): string{
+    return this.bookService.getBookPrpp(this.bookList.results[target], 'id')
+  }
+  public getBookTitle(target: number): string{
+    return this.bookService.getBookPrpp(this.bookList.results[target], 'title')
   }
 
 
