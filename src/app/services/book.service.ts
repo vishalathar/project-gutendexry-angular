@@ -38,7 +38,7 @@ export class BookService {
   // Methods for getting specific properties from inside objects:
   // If accessing person or book objects inside a BookList feed the object into the correct method
   // e.g. getBookProp(this.bookList.result[0], 'id') to get the id property of the first book in a booklist's results.
-  getBookListPrpp(bookList: BookList, target: string): string {
+  getBookListProp(bookList: BookList, target: string): string {
     let element: any = bookList;
     for (let prop in element) {
       if (prop === target) return element[prop];
@@ -46,7 +46,7 @@ export class BookService {
     return `${target} not found`;
   }
 
-  getBookPrpp(book: Book, target: string): string {
+  getBookProp(book: Book, target: string): string {
     let element: any = book;
     for (let prop in element) {
       if (prop === target) return element[prop];
@@ -54,11 +54,32 @@ export class BookService {
     return `${target} not found`;
   }
 
-  getPersonPrpp(person: Person, target: string): string {
+  getPersonProp(person: Person, target: string): string {
     let element: any = person;
     for (let prop in element) {
       if (prop === target) return element[prop];
     }
     return `${target} not found`;
   }
+  getBookAuthors(book: Book): Person[]{
+    let results: Person[] = []
+
+    let authors: any = book.authors;
+    for(let person in authors){
+      results.push(authors[person]);
+    }
+    return results
+  }
+
+  getBookTranslators(book: Book): Person[]{
+    let results: Person[] = []
+
+    let translators: any = book.translators;
+    for(let person in translators){
+      results.push(translators[person]);
+    }
+    return results
+  }
+
 }
+

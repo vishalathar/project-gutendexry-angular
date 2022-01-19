@@ -5,63 +5,128 @@
 
   <h2 class=" text-center"><strong>The top 5 books are:</strong></h2>
 </div>
-<div *ngIf="bookList.count == 0">
-  <!-- If bookList is an empty object display this-->
-  {{ clientMessage.message }}
+
+<div *ngIf="!bookList" id="loading-message">
+  {{clientMessage.message}}
 </div>
-<div class="container">
-  <!-- If bookList is not an empty object display this-->
-  <div *ngIf="bookList.count >0">
 
-    <div class="row">
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title">{{getBookId(0) | json}} {{getBookTitle(0) | json}}</h5>
-          <a href="#" class="btn btn-primary">Go to Book Details</a>
-        </div>
-      </div>
+<div *ngIf="bookList != undefined">
+  <div class="container">
+    <!-- If bookList is not an empty object display this-->
+    <div *ngIf="bookList.count >0">
 
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-sm-6">
-          <div class="card text-center">
+          <div class="card text-center h-100">
             <div class="card-body">
-              <h5 class="card-title">{{getBookId(1) | json}} {{getBookTitle(1) | json}}</h5>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h3 class="card-title">1</h3>
+              <h3 class="card-title">{{getBookTitle(0) | json}}</h3>
+              <h4 class="card-subtitle">{{getBookId(0) | json}}</h4>
+              <h5 class="card-text">
+                <ul class="list-group">
+                  <li class="list-group-item">Authors: {{getBookAuthors(0) | json}}</li>
+                  <li class="list-group-item">Languages: {{getBookLanguages(0) | json}}</li>
+                  <li class="list-group-item">Translators: {{getBookTranslators(0) | json}}</li>
+                  <li class="list-group-item">Subjects: {{getBookSubjects(0) | json}}</li>
+                  <li class="list-group-item">Bookshelves: {{getBookBookshelves(0) | json}}</li>
+                  <li class="list-group-item">Download Count: {{getBookCount(0) | json}}</li>
+                </ul>
+              </h5>
+              <a href="https://www.gutenberg.org/ebooks/{{getBookId(0) | json}}" class="btn btn-primary">Go to Book
+                Details</a>
             </div>
           </div>
         </div>
+      </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card text-center h-100">
+              <div class="card-body">
+                <h3 class="card-title">2</h3>
+                <h3 class="card-title">{{getBookTitle(1) | json}}</h3>
+                <h4 class="card-subtitle">{{getBookId(1) | json}}</h4>
+                <h5 class="card-text">
+                  <ul class="list-group">
+                    <li class="list-group-item">Authors: {{getBookAuthors(1) | json}}</li>
+                    <li class="list-group-item">Languages: {{getBookLanguages(1) | json}}</li>
+                    <li class="list-group-item">Subjects: {{getBookSubjects(1) | json}}</li>
+                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(1) | json}}</li>
+                    <li class="list-group-item">Download Count: {{getBookCount(1) | json}}</li>
+                  </ul>
+                </h5>
+                <a href="https://www.gutenberg.org/ebooks/{{getBookId(1) | json}}" class="btn btn-primary">Go
+                  somewhere</a>
+              </div>
+            </div>
+          </div>
 
           <div class="col-sm-6">
-            <div class="card text-center">
+            <div class="card text-center h-100">
               <div class="card-body">
-                <h5 class="card-title">{{getBookId(2) | json}} {{getBookTitle(2) | json}}</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h3 class="card-title">3</h3>
+                <h3 class="card-title">{{getBookTitle(2) | json}}</h3>
+                <h4 class="card-subtitle">{{getBookId(2) | json}}</h4>
+                <h5 class="card-text">
+                  <ul class="list-group">
+                    <li class="list-group-item">Authors: {{getBookAuthors(2) | json}}</li>
+                    <li class="list-group-item">Languages: {{getBookLanguages(2) | json}}</li>
+                    <li class="list-group-item">Subjects: {{getBookSubjects(2) | json}}</li>
+                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(2) | json}}</li>
+                    <li class="list-group-item">Download Count: {{getBookCount(2) | json}}</li>
+                  </ul>
+                </h5>
+                <a href="https://www.gutenberg.org/ebooks/{{getBookId(2) | json}}" class="btn btn-primary">Go
+                  somewhere</a>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
 
       <div class="row">
         <div class="col-sm-6">
-          <div class="card text-center">
+          <div class="card text-center h-100">
             <div class="card-body">
-              <h5 class="card-title">{{getBookId(3) | json}} {{getBookTitle(3) | json}}</h5>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h3 class="card-title">4</h3>
+              <h3 class="card-title">{{getBookTitle(3) | json}}</h3>
+              <h4 class="card-subtitle">{{getBookId(3) | json}}</h4>
+              <h5 class="card-text">
+                <ul class="list-group">
+                  <li class="list-group-item">Authors: {{getBookAuthors(3) | json}}</li>
+                  <li class="list-group-item">Languages: {{getBookLanguages(3) | json}}</li>
+                  <li class="list-group-item">Subjects: {{getBookSubjects(3) | json}}</li>
+                  <li class="list-group-item">Bookshelves: {{getBookBookshelves(3) | json}}</li>
+                  <li class="list-group-item">Download Count: {{getBookCount(3) | json}}</li>
+                </ul>
+              </h5>
+              <a href="https://www.gutenberg.org/ebooks/{{getBookId(3) | json}}" class="btn btn-primary">Go
+                somewhere</a>
             </div>
           </div>
         </div>
 
-          <div class="col-sm-6">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">{{getBookId(4) | json}} {{getBookTitle(4) | json}}</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
+        <div class="col-sm-6">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <h3 class="card-title">5</h3>
+              <h3 class="card-title">{{getBookTitle(4) | json}}</h3>
+              <h4 class="card-subtitle">{{getBookId(4) | json}}</h4>
+              <h5 class="card-text">
+                <ul class="list-group">
+                  <li class="list-group-item">Authors: {{getBookAuthors(4) | json}}</li>
+                  <li class="list-group-item">Languages: {{getBookLanguages(4) | json}}</li>
+                  <li class="list-group-item">Subjects: {{getBookSubjects(4) | json}}</li>
+                  <li class="list-group-item">Bookshelves: {{getBookBookshelves(4) | json}}</li>
+                  <li class="list-group-item">Download Count: {{getBookCount(4) | json}}</li>
+                </ul>
+              </h5>
+              <a href="https://www.gutenberg.org/ebooks/{{getBookId(4) | json}}" class="btn btn-primary">Go to files
+                Page</a>
             </div>
           </div>
         </div>
       </div>
-
     </div>
-
+  </div>
+</div>
