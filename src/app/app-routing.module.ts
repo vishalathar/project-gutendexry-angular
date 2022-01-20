@@ -2,11 +2,13 @@ import { AllComponent } from './components/all/all.component';
 import { MainComponent } from './components/main/main.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RecommendComponent } from './components/recommend/recommend.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'main', component: MainComponent}, // http:localhost:4200/main
   {path: 'all', component: AllComponent},
+  {path: 'recommend', component: RecommendComponent},
 
 
 

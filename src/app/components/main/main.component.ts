@@ -21,11 +21,6 @@ export class MainComponent implements OnInit {
   public clientMessage: ClientMessage = new ClientMessage('Accessing Book List');
   public bookList!: BookList;
 
-
-
-
-
-
   constructor(private bookService: BookService) {
     this.findFirstBooks()
    }
