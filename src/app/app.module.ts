@@ -13,6 +13,8 @@ import { AllComponent } from './components/all/all.component';
 import { LandingComponent } from './components/landing/landing.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SecurityComponent } from './components/security/security.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -24,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     AllComponent,
     LandingComponent,
+    SecurityComponent,
 
   ],
   imports: [
@@ -31,7 +34,11 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
