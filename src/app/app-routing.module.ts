@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  {path: '', component: MainComponent},
+  {path: '', component: LandingComponent},
   {path: 'main', component: MainComponent}, // http:localhost:4200/main
   {path: 'all', component: AllComponent},
 

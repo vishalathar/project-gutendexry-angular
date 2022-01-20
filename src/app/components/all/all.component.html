@@ -1,22 +1,51 @@
-<div>
-
-
 
 
   <div>
     <h2 class="card-header text-center">{{ title }}</h2>
   </div>
 
-  <!-- <ul *ngFor="let b of Book"  class="list-group"  > 
-  <li class="list-group-item"> Id: {{b.bookId}} </li>
-  <li class="list-group-item">Book Title: {{b.bookTitle}}</li>
-  <li class="list-group-item">BookSubject: {{b.bookSubjects}} </li>
-  <li class="list-group-item">Authors: {{b.authors}}</li>
-  <li class="list-group-item">Translators: {{b.translators}} </li>
-  <li class="list-group-item">BookShelves: {{b.bookshelves}} </li>
-  <li class="list-group-item">Languages: {{b.languages}}</li>
-  <li class="list-group-item">Download Count: {{b.dlCount}} </li>
-</ul>
--->
+  <div class="buttonContainer">
+    <button class="TopButton" type="button" (click)="findFirstBooks()">First page</button>
+  </div>
+  <div class="align-right">
+    <button class="RightButton" type="button" (click)="findLastBooks()">Last page</button>
+  </div>
 
-</div>
+
+
+  <div *ngIf="bookList != undefined">
+    <div class="container">
+      <!-- If bookList is not an empty object display this-->
+      <div *ngIf="bookList.count >0">
+
+        <div class="row justify-content-center">
+          <div class="col-sm-6">
+            <div class="card text-center h-100">
+              <div class="card-body">
+
+
+
+                  <ul *ngFor="let item of bookList.results; index as i;" class="list-group">
+                  <li class="list-group-item">Title: {{ getBookTitle(i) }}</li>
+                  <li class="list-group-item">Id: {{getBookId(i) }}</li>
+                  <li class="list-group-item">Authors: {{getBookAuthors(i)  }}</li>
+                  <li class="list-group-item">Languages: {{getBookLanguages(i)  }}</li>
+
+                  <li class="list-group-item">Bookshelves: {{getBookBookshelves(i)  }}</li>
+                  <li class="list-group-item">Download Count: {{getBookCount(i)}}</li>
+                  <li class="list-group-item"><a href="https://www.gutenberg.org/ebooks/{{getBookId(i)  }}" class="btn btn-primary">Go to Book
+                    Details</a></li>
+                  <br />
+                </ul>
+                <div *ngIf="checkNull('previous') != null">
+                <button class="btn btn-primary" type="button" (click)="previousPage()">previous</button>
+              </div>
+                <div *ngIf="checkNull('next') != null">
+                  <button class="btn btn-primary" type="button" (click)="nextPage()">next</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
