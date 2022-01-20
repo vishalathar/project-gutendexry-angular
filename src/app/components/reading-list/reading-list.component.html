@@ -1,1 +1,14 @@
-<p>reading-list works!</p>
+<div class="container">
+  <h3>Here is your Reading List</h3>
+
+  <div *ngIf="getUserList().length == 0">
+    Reading List is Empty, add a book
+  </div>
+
+  <div *ngfor="item in list; index as i">
+
+
+
+  </div>
+
+</div>

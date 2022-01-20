@@ -1,16 +1,22 @@
 import { BookService } from './../../services/book.service';
 import { Book, BookList, Person } from './../../models/GutendexryModels';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientMessage } from 'src/app/models/ClientMessage';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+  encapsulation: ViewEncapsulation.None,
+  styles: [`
+    .card.disabled {
+      opacity: 0.5;
+    }
+  `]
 })
 export class MainComponent implements OnInit {
 
-
+  disabled = false;
   title = "Home";
   user = "";
 
@@ -70,3 +76,4 @@ export class MainComponent implements OnInit {
   }
 
 }
+

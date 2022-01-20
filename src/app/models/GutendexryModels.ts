@@ -93,3 +93,38 @@ export class BookList {
     }
   }
 }
+
+export class Book_BE{
+  bookid: number = 0;
+
+  constructor(
+    bookid: number
+  ){
+    this.bookid = bookid;
+  }
+}
+
+export class User {
+  userid: number = 0;
+  firstname: string = '';
+  lastname: string = '';
+  username: string = '';
+  password: string = '';
+  userbooks: Book_BE[];
+
+  constructor(
+    userid: number,
+    firstname: string,
+    lastname: string,
+    username: string,
+    password: string,
+    userbooks: any[]
+  ){
+    this.userid = userid;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.username = username;
+    this.password = password;
+    this.userbooks = userbooks;
+  }
+}

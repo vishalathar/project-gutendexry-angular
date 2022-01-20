@@ -18,7 +18,6 @@ export class RecommendComponent {
 
   constructor(private bookService: BookService ) { }
 
-
   public findBookByCatagory(){
     let targetCatagory = this.selection
     this.show=true
@@ -27,7 +26,6 @@ export class RecommendComponent {
      this.bookService.parseBookListForId(targetCatagory).subscribe(data =>{
        bookArray = data
        let target = this.getRandomInt(0, bookArray.length)
-
 
     this.bookService.getBook(target)
     .subscribe(data =>{

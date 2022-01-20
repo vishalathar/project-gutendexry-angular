@@ -15,118 +15,121 @@
     <!-- If bookList is not an empty object display this-->
     <div *ngIf="bookList.count >0">
 
-      <div class="row justify-content-center">
-        <div class="col-sm-6">
-          <div class="card text-center h-100">
-            <div class="card-body">
-              <h3 class="card-title">1</h3>
-              <h3 class="card-title">{{getBookTitle(0) | json}}</h3>
-              <h4 class="card-subtitle">{{getBookId(0) | json}}</h4>
-              <h5 class="card-text">
-                <ul class="list-group">
-                  <li class="list-group-item">Authors: {{getBookAuthors(0) | json}}</li>
-                  <li class="list-group-item">Languages: {{getBookLanguages(0) | json}}</li>
-                  <li class="list-group-item">Translators: {{getBookTranslators(0) | json}}</li>
-                  <li class="list-group-item">Subjects: {{getBookSubjects(0) | json}}</li>
-                  <li class="list-group-item">Bookshelves: {{getBookBookshelves(0) | json}}</li>
-                  <li class="list-group-item">Download Count: {{getBookCount(0) | json}}</li>
-                </ul>
-              </h5>
-              <a href="https://www.gutenberg.org/ebooks/{{getBookId(0) | json}}" class="btn btn-primary">Go to Book
-                Details</a>
-            </div>
-          </div>
-        </div>
-      </div>
 
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card text-center h-100">
-              <div class="card-body">
-                <h3 class="card-title">2</h3>
-                <h3 class="card-title">{{getBookTitle(1) | json}}</h3>
-                <h4 class="card-subtitle">{{getBookId(1) | json}}</h4>
-                <h5 class="card-text">
+      <ngb-accordion #a="ngbAccordion" activeIds="">
+
+        <ngb-panel>
+          <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+              <h5 class="m-0">{{getBookTitle(0)}} by {{getBookAuthors(0)}}, ID: {{getBookId(0) | json}}</h5>
+              <div>
+                <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <h5 class="card-text">
                   <ul class="list-group">
-                    <li class="list-group-item">Authors: {{getBookAuthors(1) | json}}</li>
-                    <li class="list-group-item">Languages: {{getBookLanguages(1) | json}}</li>
+                    <li class="list-group-item">Languages: {{getBookLanguages(0)}}</li>
+                    <li class="list-group-item">Subjects: {{getBookSubjects(0) | json}}</li>
+                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(0)}}</li>
+                    <li class="list-group-item">Download Count: {{getBookCount(0)}}</li>
+                  </ul>
+                </h5>
+                <a href="https://www.gutenberg.org/ebooks/{{getBookId(0)}}" class="btn btn-primary">Go to Book
+                  Details</a><a  class="btn btn-primary">Add To Reading List</a>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel>
+          <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+              <h5 class="m-0">{{getBookTitle(1)}} by {{getBookAuthors(1)}}, ID: {{getBookId(1) | json}}</h5>
+              <div>
+                <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <h5 class="card-text">
+                  <ul class="list-group">
+                    <li class="list-group-item">Languages: {{getBookLanguages(1)}}</li>
                     <li class="list-group-item">Subjects: {{getBookSubjects(1) | json}}</li>
-                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(1) | json}}</li>
-                    <li class="list-group-item">Download Count: {{getBookCount(1) | json}}</li>
+                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(1)}}</li>
+                    <li class="list-group-item">Download Count: {{getBookCount(1)}}</li>
                   </ul>
                 </h5>
-                <a href="https://www.gutenberg.org/ebooks/{{getBookId(1) | json}}" class="btn btn-primary">Go
-                  somewhere</a>
+                <a href="https://www.gutenberg.org/ebooks/{{getBookId(1)}}" class="btn btn-primary">Go to Book
+                  Details</a><a  class="btn btn-primary">Add To Reading List</a>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel>
+          <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+              <h5 class="m-0">{{getBookTitle(2)}} by {{getBookAuthors(2)}}, ID: {{getBookId(2) | json}}</h5>
+              <div>
+                <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
               </div>
             </div>
-          </div>
-
-          <div class="col-sm-6">
-            <div class="card text-center h-100">
-              <div class="card-body">
-                <h3 class="card-title">3</h3>
-                <h3 class="card-title">{{getBookTitle(2) | json}}</h3>
-                <h4 class="card-subtitle">{{getBookId(2) | json}}</h4>
-                <h5 class="card-text">
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <h5 class="card-text">
                   <ul class="list-group">
-                    <li class="list-group-item">Authors: {{getBookAuthors(2) | json}}</li>
-                    <li class="list-group-item">Languages: {{getBookLanguages(2) | json}}</li>
+                    <li class="list-group-item">Languages: {{getBookLanguages(2)}}</li>
                     <li class="list-group-item">Subjects: {{getBookSubjects(2) | json}}</li>
-                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(2) | json}}</li>
-                    <li class="list-group-item">Download Count: {{getBookCount(2) | json}}</li>
+                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(2)}}</li>
+                    <li class="list-group-item">Download Count: {{getBookCount(2)}}</li>
                   </ul>
                 </h5>
-                <a href="https://www.gutenberg.org/ebooks/{{getBookId(2) | json}}" class="btn btn-primary">Go
-                  somewhere</a>
+                <a href="https://www.gutenberg.org/ebooks/{{getBookId(2)}}" class="btn btn-primary">Go to Book
+                  Details</a><a  class="btn btn-primary">Add To Reading List</a>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel>
+          <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+              <h5 class="m-0">{{getBookTitle(3)}} by {{getBookAuthors(3)}}, ID: {{getBookId(3) | json}}</h5>
+              <div>
+                <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
               </div>
             </div>
-          </div>
-        </div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <h5 class="card-text">
+                  <ul class="list-group">
+                    <li class="list-group-item">Languages: {{getBookLanguages(3)}}</li>
+                    <li class="list-group-item">Subjects: {{getBookSubjects(3) | json}}</li>
+                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(3)}}</li>
+                    <li class="list-group-item">Download Count: {{getBookCount(3)}}</li>
+                  </ul>
+                </h5>
+                <a href="https://www.gutenberg.org/ebooks/{{getBookId(3)}}" class="btn btn-primary">Go to Book
+                  Details</a><a  class="btn btn-primary">Add To Reading List</a>
+          </ng-template>
+        </ngb-panel>
 
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card text-center h-100">
-            <div class="card-body">
-              <h3 class="card-title">4</h3>
-              <h3 class="card-title">{{getBookTitle(3) | json}}</h3>
-              <h4 class="card-subtitle">{{getBookId(3) | json}}</h4>
-              <h5 class="card-text">
-                <ul class="list-group">
-                  <li class="list-group-item">Authors: {{getBookAuthors(3) | json}}</li>
-                  <li class="list-group-item">Languages: {{getBookLanguages(3) | json}}</li>
-                  <li class="list-group-item">Subjects: {{getBookSubjects(3) | json}}</li>
-                  <li class="list-group-item">Bookshelves: {{getBookBookshelves(3) | json}}</li>
-                  <li class="list-group-item">Download Count: {{getBookCount(3) | json}}</li>
-                </ul>
-              </h5>
-              <a href="https://www.gutenberg.org/ebooks/{{getBookId(3) | json}}" class="btn btn-primary">Go
-                somewhere</a>
+        <ngb-panel>
+          <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+              <h5 class="m-0">{{getBookTitle(4)}} by {{getBookAuthors(4)}}, ID: {{getBookId(4) | json}}</h5>
+              <div>
+                <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="card text-center h-100">
-            <div class="card-body">
-              <h3 class="card-title">5</h3>
-              <h3 class="card-title">{{getBookTitle(4) | json}}</h3>
-              <h4 class="card-subtitle">{{getBookId(4) | json}}</h4>
-              <h5 class="card-text">
-                <ul class="list-group">
-                  <li class="list-group-item">Authors: {{getBookAuthors(4) | json}}</li>
-                  <li class="list-group-item">Languages: {{getBookLanguages(4) | json}}</li>
-                  <li class="list-group-item">Subjects: {{getBookSubjects(4) | json}}</li>
-                  <li class="list-group-item">Bookshelves: {{getBookBookshelves(4) | json}}</li>
-                  <li class="list-group-item">Download Count: {{getBookCount(4) | json}}</li>
-                </ul>
-              </h5>
-              <a href="https://www.gutenberg.org/ebooks/{{getBookId(4) | json}}" class="btn btn-primary">Go to files
-                Page</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <h5 class="card-text">
+                  <ul class="list-group">
+                    <li class="list-group-item">Languages: {{getBookLanguages(4)}}</li>
+                    <li class="list-group-item">Subjects: {{getBookSubjects(4) | json}}</li>
+                    <li class="list-group-item">Bookshelves: {{getBookBookshelves(4)}}</li>
+                    <li class="list-group-item">Download Count: {{getBookCount(4)}}</li>
+                  </ul>
+                </h5>
+                <a href="https://www.gutenberg.org/ebooks/{{getBookId(4)}}" class="btn btn-primary">Go to Book
+                  Details</a><a  class="btn btn-primary">Add To Reading List</a>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
