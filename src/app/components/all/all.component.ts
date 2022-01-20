@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Book } from 'src/app/models/GutendexryModels';
 @Component({
   selector: 'app-all',
   templateUrl: './all.component.html',
@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllComponent implements OnInit {
 
-  title = 'All Users'
+  title = 'All Books'
+  public books: Book[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
