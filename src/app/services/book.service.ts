@@ -6,10 +6,11 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Book, BookList, Person } from '../models/GutendexryModels';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 
 const url = `${bookUrl}`;
 const allUrl = `${url}/books`;
+const topicUrl = `${allUrl}?topic=`
 @Injectable({
   providedIn: 'root',
 })
@@ -25,8 +26,8 @@ export class BookService {
     return this.http.get<BookList>(pageUrl).pipe(catchError(this.handleError));
   }
   //Get specific Book Details by ID
-  getBook(id:number): Observable<Book> {
-    return this.http.get<Book>(`${url}/${id}`).pipe(catchError(this.handleError));
+  getBook(id:number): Observable<BookList> {
+    return this.http.get<BookList>(`${allUrl}?ids=${id}`).pipe(catchError(this.handleError));
   }
 
 
@@ -92,6 +93,27 @@ export class BookService {
       results.push(translators[person]);
     }
     return results
+  }
+
+
+  public parseBookListForId(target:string): Observable<string[]>{
+    let result:string[] = []
+    let tempResult:string[] = []
+    let page:BookList
+    this.getPage(`${topicUrl}target`).subscribe(data =>{
+      data.results.forEach((book) => {
+        tempResult.push(this.getBookProp(book, 'id'))
+      })
+      if(data.next != ''){
+        this.parseBookListForId(data.next).subscribe(data =>{
+          tempResult.concat(data)
+        })
+
+      }
+      result.concat(tempResult)
+    })
+
+    return of(result)
   }
 
 }

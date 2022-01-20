@@ -12,6 +12,8 @@ import { AllComponent } from './components/all/all.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RecommendComponent } from './components/recommend/recommend.component';
 import { ReadingListComponent } from './components/reading-list/reading-list.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ReadingListComponent } from './components/reading-list/reading-list.com
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     NgbModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

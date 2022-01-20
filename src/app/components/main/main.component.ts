@@ -26,11 +26,7 @@ export class MainComponent implements OnInit {
    }
 
   findFirstBooks(){
-    this.bookService.getTop()
-      .subscribe(data =>{
-        this.bookList = data;
-        console.log(this.bookList)
-      })
+    this.bookService.getTop().subscribe(data =>{this.bookList = data;console.log(this.bookList)})
   }
 
   public getBookId(target: number): string{
