@@ -16,7 +16,7 @@ export class ClientSecurityService {
   }
 
   // accessLogin(token) - send the request with the token TO the login() method in the server at "/"
-  public acceessLogin(token:string) {
+  public accessLogin(token:string) {
 
     let tokenStr = `GutendexryBearer ${token}`
     const headers = new HttpHeaders().set("Authorization", tokenStr);

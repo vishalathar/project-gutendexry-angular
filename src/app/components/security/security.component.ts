@@ -8,8 +8,8 @@ import { ClientSecurityService } from 'src/app/services/client-security.service'
 export class SecurityComponent implements OnInit {
 
   authRequest: any = {
-    "username" : "person",
-    "password" : "password"
+    "username" : "vishal",
+    "password" : "pass123"
   }
 
   response: any;
@@ -29,15 +29,15 @@ export class SecurityComponent implements OnInit {
 
     resp.subscribe(data =>
       {
-        // console.log(data)
+        console.log(data)
         this.accessApi(data);
       },
         error => console.log(error));
   }
 
-  public accessApi(token: any) {  let resp = this.c_security.acceessLogin(token);
+
+  public accessApi(token: any) {
+    let resp = this.c_security.accessLogin(token);
     resp.subscribe(data => this.response = data); // the string returned from the controller's login() method "You're logged in!"
   }
-
-
 }

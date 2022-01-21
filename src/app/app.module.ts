@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { SecurityComponent } from './components/security/security.component';
 import { FormsModule } from '@angular/forms';
 
+import { ElementRef } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -35,6 +38,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+
+    ReactiveFormsModule,
 
     FormsModule,
     HttpClientModule
