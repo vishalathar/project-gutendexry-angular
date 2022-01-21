@@ -2,125 +2,120 @@ import { BookService } from './../../services/book.service';
 import { Component } from '@angular/core';
 import { Book, BookList, Person } from 'src/app/models/GutendexryModels';
 
-
 @Component({
   selector: 'app-recommend',
   templateUrl: './recommend.component.html',
-  styleUrls: ['./recommend.component.css']
+  styleUrls: ['./recommend.component.css'],
 })
 export class RecommendComponent {
-
-  public book: BookList[] = []
-  public selection: string =''
-  show = false
-
-  private self = this
-
-  constructor(private bookService: BookService ) { }
-
-  public findBookByCatagory(){
-    let targetCatagory = this.selection
-    this.show=true
-    this.book.pop()
-    let bookArray:string[]
-     this.bookService.parseBookListForId(targetCatagory).subscribe(data =>{
-       bookArray = data
-       let target = this.getRandomInt(0, bookArray.length)
-
-    this.bookService.getBook(target)
-    .subscribe(data =>{
-      console.log(data)
-      console.log(this.book.push(data));
-      this.show=false
-
-    })
-     })
-
-
-
+  public book: Book[] = [];
+  public selection: string = '';
+  show = false;
+  private idList: string[] = []
+  private self = this;
+  public bookList!: BookList;
+  constructor(private bookService: BookService) {
+    this.findFirstBooks()
   }
 
 
 
-  public findAnyBook(){
-    this.show=true
-    this.book.pop()
+  findFirstBooks(){
+    this.bookService.getTop().subscribe(data =>{this.bookList = data})
+  }
+  public findBookByCatagory() {
+    let targetCatagory = this.selection;
+    this.show = true;
+    this.book.pop();
+    let target:number
 
-    let target = this.getRandomInt(0, 67098)
-    console.log(target)
-    this.bookService.getBook(target)
-    .subscribe(data =>{
-      console.log(data)
-      console.log(this.book.push(data));
-      this.show=false
-    })
+    this.bookService.getTopTopicSearchPage(targetCatagory).subscribe((data) => {
+      this.idList = []
+      let page = data
+      let targetBookInOrder = this.getRandomInt(0, Number(page.count))
+      let targetPage = (targetBookInOrder/32)
+      let targetBook = (targetBookInOrder%32)
+      this.bookService.getPageOfTopicSearch(Math.floor(targetPage), targetCatagory).subscribe((data) => {
+        let list:BookList = data
+
+        let results:Book[] = list.results
+
+        this.book.push(results[targetBook-1]);
+        this.show = false;
+      });
+    });
   }
 
-  // public randomBookByTarget(catagorySearch:string){
-  //   this.show=true
-  //   this.book.pop()
-
-
-  //   let bookArray:string[] = this.bookService.parseBookListForId(catagorySearch)
-
-  //   let target = this.getRandomInt(0, bookArray.length)
-  //   console.log(target)
-
-  //   this.bookService.getBook(target)
-  //   .subscribe(data =>{
-  //     console.log(data)
-  //     console.log(this.book.push(data));
-  //     this.show=false
-
-  //   })
-  // }
-    private getRandomInt(min:number, max:number) : number{
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min)) + min;
+  getBookListProp(bookList: BookList, target: string): string {
+    let element: any = bookList;
+    for (let prop in element) {
+      if (prop === target) return element[prop];
     }
+    return `${target} not found`;
+  }
 
-    public getBookId(): string{
-      return this.bookService.getBookProp(this.book[0].results[0], 'id')
-    }
-    public getBookTitle(): string{
-      return this.bookService.getBookProp(this.book[0].results[0], 'title')
-    }
-    public getBookSubjects(): string{
-      return this.bookService.getBookProp(this.book[0].results[0], 'subjects')
-    }
-    public getBookBookshelves(): string{
-      return this.bookService.getBookProp(this.book[0].results[0], 'bookshelves')
-    }
-    public getBookCount(): string{
-      return this.bookService.getBookProp(this.book[0].results[0], 'download_count')
-    }
-    public getBookLanguages(): string{
-      return this.bookService.getBookProp(this.book[0].results[0], 'languages')
-    }
-    public getBookAuthors(): string[]{
-      let results: string[] = []
-      let authors: Person[] = this.bookService.getBookAuthors(this.book[0].results[0])
-      let author: any
-      authors.forEach( (author) =>{ results.push(this.bookService.getPersonProp(author, 'name'))})
-      return results
-      }
-      public getBookTranslators(): string[]{
-        let results: string[] = []
-        let translators: Person[] = this.bookService.getBookTranslators(this.book[0].results[0])
-        let translator: any
-        translators.forEach( (translator) =>{ results.push(this.bookService.getPersonProp(translator, 'name'))})
-        return results
-        }
+  public findAnyBook() {
+    this.show = true;
+    this.book.pop();
 
-        close() {
-          this.show = false;
-        }
+    let target = this.getRandomInt(0, this.bookList.count);
+    this.bookService.getBook(target).subscribe((data) => {
+      let list:BookList = data
+      let results:Book[] = list.results
+      this.book.push(results[0]);
+      this.show = false;
+    });
+  }
 
+  private getRandomInt(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 
+  public getBookId(): string {
+    return this.bookService.getBookProp(this.book[0], 'id');
+  }
+  public getBookTitle(): string {
+    return this.bookService.getBookProp(this.book[0], 'title');
+  }
+  public getBookSubjects(): string {
+    return this.bookService.getBookProp(this.book[0], 'subjects');
+  }
+  public getBookBookshelves(): string {
+    return this.bookService.getBookProp(this.book[0], 'bookshelves');
+  }
+  public getBookCount(): string {
+    return this.bookService.getBookProp(
+      this.book[0],
+      'download_count'
+    );
+  }
+  public getBookLanguages(): string {
+    return this.bookService.getBookProp(this.book[0], 'languages');
+  }
+  public getBookAuthors(): string[] {
+    let results: string[] = [];
+    let authors: Person[] = this.bookService.getBookAuthors(
+      this.book[0]
+    );
+    let author: any;
+    authors.forEach((author) => {
+      results.push(this.bookService.getPersonProp(author, 'name'));
+    });
+    return results;
+  }
+  public getBookTranslators(): string[] {
+    let results: string[] = [];
+    let translators: Person[] = this.bookService.getBookTranslators(
+      this.book[0]
+    );
+    let translator: any;
+    translators.forEach((translator) => {
+      results.push(this.bookService.getPersonProp(translator, 'name'));
+    });
+    return results;
+  }
+
+  close() {
+    this.show = false;
+  }
 }
-
-
-
-
-

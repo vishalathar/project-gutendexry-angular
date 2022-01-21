@@ -6,11 +6,11 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Book, BookList, Person } from '../models/GutendexryModels';
-import { catchError, Observable, of, throwError } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 
 const url = `${bookUrl}`;
-const allUrl = `${url}/books`;
-const topicUrl = `${allUrl}?topic=`
+const allUrl = `${url}books`;
+const topicUrl = `${allUrl}?topic=`;
 @Injectable({
   providedIn: 'root',
 })
@@ -22,12 +22,21 @@ export class BookService {
     return this.http.get<BookList>(allUrl).pipe(catchError(this.handleError));
   }
   //Get given page of API results
-  getPage(pageUrl:string): Observable<BookList> {
+  getPage(pageUrl: string): Observable<BookList> {
     return this.http.get<BookList>(pageUrl).pipe(catchError(this.handleError));
   }
+  //Get specific page of search results
+  public getPageOfTopicSearch(page:number, search:string): Observable<BookList> {
+    return this.http.get<BookList>(`${allUrl}/?page${page}&topic=${search}`)
+  }
+  getTopTopicSearchPage(search:string): Observable<BookList> {
+    return this.http.get<BookList>(`${topicUrl}${search}`).pipe(catchError(this.handleError));
+  }
   //Get specific Book Details by ID
-  getBook(id:number): Observable<BookList> {
-    return this.http.get<BookList>(`${allUrl}?ids=${id}`).pipe(catchError(this.handleError));
+  getBook(id: number): Observable<BookList> {
+    return this.http
+      .get<BookList>(`${allUrl}?ids=${id}`)
+      .pipe(catchError(this.handleError));
   }
 
 
@@ -45,9 +54,6 @@ export class BookService {
       () => new Error('Something Really Bad happened, please try again later')
     );
   }
-
-
-
 
   // Methods for getting specific properties from inside objects:
   // If accessing person or book objects inside a BookList feed the object into the correct method
@@ -75,46 +81,27 @@ export class BookService {
     }
     return `${target} not found`;
   }
-  getBookAuthors(book: Book): Person[]{
-    let results: Person[] = []
+  getBookAuthors(book: Book): Person[] {
+    let results: Person[] = [];
 
     let authors: any = book.authors;
-    for(let person in authors){
+    for (let person in authors) {
       results.push(authors[person]);
     }
-    return results
+    return results;
   }
 
-  getBookTranslators(book: Book): Person[]{
-    let results: Person[] = []
+  getBookTranslators(book: Book): Person[] {
+    let results: Person[] = [];
 
     let translators: any = book.translators;
-    for(let person in translators){
+    for (let person in translators) {
       results.push(translators[person]);
     }
-    return results
+    return results;
   }
 
 
-  public parseBookListForId(target:string): Observable<string[]>{
-    let result:string[] = []
-    let tempResult:string[] = []
-    let page:BookList
-    this.getPage(`${topicUrl}target`).subscribe(data =>{
-      data.results.forEach((book) => {
-        tempResult.push(this.getBookProp(book, 'id'))
-      })
-      if(data.next != ''){
-        this.parseBookListForId(data.next).subscribe(data =>{
-          tempResult.concat(data)
-        })
-
-      }
-      result.concat(tempResult)
-    })
-
-    return of(result)
-  }
 
 }
 
