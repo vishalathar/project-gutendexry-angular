@@ -45,9 +45,7 @@ export class Book{
         this.dlCount = jsonObj[prop];
       }
     }
-
   }
-
 }
 
 export class Person {

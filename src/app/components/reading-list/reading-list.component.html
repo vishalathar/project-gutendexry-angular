@@ -2,7 +2,7 @@
   <h3>Here is your Reading List</h3>
 
   <div *ngIf="getUserList().length == 0">
-    Reading List is Empty, add a book
+    Reading List is Empty, add a book <a routerLink="/recommend" class="btn btn-primary">Go to Recommendations</a> <a routerLink="/search" class="btn btn-primary">Go to Search</a> <a routerLink="/all" class="btn btn-primary">Go to All List</a><a routerLink="/main" class="btn btn-primary">Go to Home</a>
   </div>
 <ngb-accordion>
 

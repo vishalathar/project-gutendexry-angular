@@ -23,14 +23,13 @@ export class RecommendComponent {
   findFirstBooks(){
     this.bookService.getTop().subscribe(data =>{this.bookList = data})
   }
+
   public findBookByCatagory() {
     let targetCatagory = this.selection;
     this.show = true;
     this.book.pop();
-    let target:number
 
     this.bookService.getTopTopicSearchPage(targetCatagory).subscribe((data) => {
-      this.idList = []
       let page = data
       let targetBookInOrder = this.getRandomInt(0, Number(page.count))
       let targetPage = (targetBookInOrder/32)
@@ -40,7 +39,7 @@ export class RecommendComponent {
 
         let results:Book[] = list.results
 
-        this.book.push(results[targetBook-1]);
+        this.book.push(results[targetBook]);
         this.show = false;
       });
     });
@@ -74,24 +73,30 @@ export class RecommendComponent {
   public getBookId(): string {
     return this.bookService.getBookProp(this.book[0], 'id');
   }
+
   public getBookTitle(): string {
     return this.bookService.getBookProp(this.book[0], 'title');
   }
+
   public getBookSubjects(): string {
     return this.bookService.getBookProp(this.book[0], 'subjects');
   }
+
   public getBookBookshelves(): string {
     return this.bookService.getBookProp(this.book[0], 'bookshelves');
   }
+
   public getBookCount(): string {
     return this.bookService.getBookProp(
       this.book[0],
       'download_count'
     );
   }
+
   public getBookLanguages(): string {
     return this.bookService.getBookProp(this.book[0], 'languages');
   }
+
   public getBookAuthors(): string[] {
     let results: string[] = [];
     let authors: Person[] = this.bookService.getBookAuthors(
@@ -103,6 +108,7 @@ export class RecommendComponent {
     });
     return results;
   }
+
   public getBookTranslators(): string[] {
     let results: string[] = [];
     let translators: Person[] = this.bookService.getBookTranslators(
@@ -118,4 +124,5 @@ export class RecommendComponent {
   close() {
     this.show = false;
   }
+
 }
