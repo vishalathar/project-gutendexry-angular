@@ -1,6 +1,7 @@
 
-
-<app-nav></app-nav>
+<div *ngIf="!!getUserName()">
+  <app-nav></app-nav>
+</div>
 <!--
 <div class="container h-100 d-flex">
 

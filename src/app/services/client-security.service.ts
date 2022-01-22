@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { url } from 'src/environments/environment'
@@ -8,10 +9,7 @@ import { User } from '../models/GutendexryModels';
 })
 export class ClientSecurityService {
 
-  private loggedUser: string;
-  private loggerUserObj: User;
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private user_service: UserService) { }
   public generateToken(request: any)  {
 
     // hit the /authenticate endpoint of our server
@@ -43,9 +41,9 @@ export class ClientSecurityService {
   }
 
   public logout(){
-    this.loggedUser = null;
-    this.loggerUserObj = null;
     this.removeToken();
+    this.user_service.userLoggedOut();
+
   }
 
   public removeToken(){

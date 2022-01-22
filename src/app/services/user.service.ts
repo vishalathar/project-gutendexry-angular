@@ -29,6 +29,10 @@ export class UserService {
     .pipe(catchError(this.handleError));
   }
 
+  userLoggedOut(){
+    this.user = new User(0, '', '', '', '', []);
+  }
+
 
   getUserProps(data: any){
 
@@ -71,6 +75,8 @@ export class UserService {
     }
   }
   }
+
+
 
   private handleError(httpError: HttpErrorResponse) {
 
