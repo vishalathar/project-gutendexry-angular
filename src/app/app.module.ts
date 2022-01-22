@@ -1,3 +1,4 @@
+import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
@@ -12,8 +13,13 @@ import { AllComponent } from './components/all/all.component';
 
 import { LandingComponent } from './components/landing/landing.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SecurityComponent } from './components/security/security.component';
+import { FormsModule } from '@angular/forms';
 
+import { ElementRef } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     AllComponent,
     LandingComponent,
+    SecurityComponent,
 
   ],
   imports: [
@@ -31,9 +38,17 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+
+    ReactiveFormsModule,
+
+    FormsModule,
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
