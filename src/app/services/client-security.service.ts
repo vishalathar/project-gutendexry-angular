@@ -16,7 +16,7 @@ export class ClientSecurityService {
 
     // hit the /authenticate endpoint of our server
     console.log("generating token")
-    console.log(request)
+    // console.log(request)
     return this.http.post(`${url}authenticate`, request, {responseType: 'text' as 'json'})
 
   }

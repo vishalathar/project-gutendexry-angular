@@ -24,7 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const userToken = localStorage.getItem(`token`);
-    if(userToken!=null){
+    if(userToken!=null){ // checks for undefined or null
       const modifiedReq = request.clone({
         headers: request.headers.set('Authorization', `GutendexryBearer ${userToken}`)
       })

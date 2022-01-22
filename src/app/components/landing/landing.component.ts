@@ -53,6 +53,7 @@ export class LandingComponent implements OnInit {
 
     },
     error => {
+      alert("Wrong username/password. Try Again.")
       this.router.navigate(['/login'])
     })
   }
