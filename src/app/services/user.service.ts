@@ -29,8 +29,14 @@ export class UserService {
     .pipe(catchError(this.handleError));
   }
 
-  addUser(firstname: string, lastname: string, username: string, password: string){
-
+  addUser(firstname: string, lastname: string, username: string, password: string): Observable<User>{
+    let req: any= {
+      "firstName" : firstname,
+      "lastName" : lastname,
+      "password" : password,
+      "username" : username
+    }
+    return this.http.post<User>(`${userUrl}/add`, req);
   }
 
   userLoggedOut(){
