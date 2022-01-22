@@ -3,7 +3,8 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { ClientSecurityService } from 'src/app/services/client-security.service';
 import { Router } from '@angular/router';
 import { ViewChild, ElementRef } from "@angular/core";
-
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/GutendexryModels';
 
 
 @Component({
@@ -12,19 +13,19 @@ import { ViewChild, ElementRef } from "@angular/core";
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
+
+  public username: string;
+  public password: string;
+
   constructor(private cs_service: ClientSecurityService, private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal, private user_service: UserService
     ) { }
 
   title = "Welcome to Gutendexry";
 
+
   ngOnInit(): void {
   }
-
-  // modify line 8 of tsconfig.json to set strict to false
-  // modify line 8 of tsconfig.json to set strict to false
-  username: string;
-  password: string;
 
 
   doLogin() {
@@ -34,14 +35,30 @@ export class LandingComponent implements OnInit {
     let resp = this.cs_service.login(this.username, this.password)
 
     resp.subscribe(data => {
-      this.router.navigate(['/main']) // think of ways in which you would append this to the header
+
+      console.log(`data: ${data}`)
+      localStorage.setItem(`token`, `${data}`)
+      //this.triggerLoginModalDismiss()
+      let resp2 =  this.user_service.findUserByUsername(this.username)
+      resp2.subscribe(data =>{
+        (        data: User) =>
+        console.log(`data : ${data}`)
+        this.user_service.getUserProps(data);
+        console.log(`firstname:  ${this.user_service.user.firstname}`)
+      },
+      error =>{
+        console.log(`error`)
+      })
+      this.router.navigate(['/main'])
+
     },
     error => {
-      //  this.closeModal = `Dismissed ${this.getDismissReason('logged in')}`;
-      this.displayNone();
       this.router.navigate(['/login'])
-
     })
+  }
+
+  doLogout() {
+    let resp = this.cs_service.logout();
   }
 
 
@@ -74,11 +91,33 @@ export class LandingComponent implements OnInit {
     }
   }
 
+  /// 2 methods, modal dissmising try
+
+  triggerLoginModalDismiss(){
+    const loginModal = document.getElementById('loginModal')
+    loginModal.toggleAttribute('visible')
+    //toggleBackdropHandler();
+
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+    })
+
+  }
+
+
+
   @ViewChild("loginModal") loginModal: ElementRef;
 
   private displayNone(){
     console.log(this.loginModal);
     let el = this.loginModal.nativeElement;
-    el.setAttribute('style', 'display: none;' );
+    el.setAttribute('style', 'display: none;  ' );
   }
+
+
+  // find user
+
 }
