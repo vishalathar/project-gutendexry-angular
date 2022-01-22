@@ -101,3 +101,22 @@ body {
 .login-form .action button:nth-child(2):hover {
   background: #3c4d6d;
 }
+
+.RightButton {
+
+
+  margin-top: 1px;
+  margin-right: 2px;
+  position:absolute;
+  top:1;
+  right:0;
+}
+.TopButton {
+
+
+  margin-top: 1px;
+  margin-right: 2px;
+  position:absolute;
+  top:1;
+  left:0;
+}
