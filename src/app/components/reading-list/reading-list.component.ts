@@ -9,9 +9,9 @@ import { Person, User, Book } from 'src/app/models/GutendexryModels';
   styleUrls: ['./reading-list.component.css'],
 })
 export class ReadingListComponent implements OnInit {
-  public list: Book[];
+  // public list: Book[];
 
-  constructor(private bookService: BookService, private userService: UserService) {
+  constructor(private bookService: BookService) {
 
   }
 
