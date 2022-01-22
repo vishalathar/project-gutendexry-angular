@@ -95,3 +95,57 @@ export class BookList {
     }
   }
 }
+
+export class Book_BE{
+  bookid: number = 0;
+  owners: number[] = [];
+
+  constructor(
+    bookid: number,
+    owners: number[]
+  ){
+    this.bookid = bookid;
+    this.owners = owners;
+  }
+}
+/*
+{
+  "id": 3,
+  "firstName": "Demo",
+  "lastName": "lastd",
+  "username": "username1",
+  "password": "pass123",
+  "books": [
+      {
+          "id": 1,
+          "owners": [
+              3
+          ]
+      }
+  ]
+}
+*/
+export class User {
+  userid: number = 0;
+  firstname: string = '';
+  lastname: string = '';
+  username: string = '';
+  password: string = '';
+  userbooks: Book_BE[];
+
+  constructor(
+    userid: number,
+    firstname: string,
+    lastname: string,
+    username: string,
+    password: string,
+    userbooks: any[]
+  ){
+    this.userid = userid;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.username = username;
+    this.password = password;
+    this.userbooks = userbooks;
+  }
+}

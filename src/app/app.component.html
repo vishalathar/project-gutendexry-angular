@@ -1,12 +1,21 @@
-<app-nav></app-nav>
 
+<div *ngIf="!!getUserName()">
+  <app-nav></app-nav>
+</div>
+<!--
 <div class="container h-100 d-flex">
 
   <div class="card border-0 my-auto w-100">
 
     <div class="shadow-lg">
 
-      <router-outlet></router-outlet>
+
+      <div style="text-align: center;" >
+        <h1>
+          Welcome to {{title}}
+        </h1>
+       </div>
+
 
     </div>
 
@@ -14,3 +23,5 @@
 
 </div>
 
+-->
+<router-outlet></router-outlet>
