@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { url } from 'src/environments/environment'
 import { User } from '../models/GutendexryModels';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,6 @@ export class ClientSecurityService {
 
   // accessLogin(token) - send the request with the token TO the login() method in the server at "/"
   public accessLogin(token:string) {
-    console.log("hey im in access login")
 
     let tokenStr = `GutendexryBearer ${token}`
     const headers = new HttpHeaders().set("Authorization", tokenStr)
@@ -39,6 +39,9 @@ export class ClientSecurityService {
 
     return this.generateToken(req); // we can subscribe to this return value in the login component
   }
+
+
+
 
   public logout(){
     this.removeToken();

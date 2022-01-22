@@ -16,6 +16,8 @@ export class LandingComponent implements OnInit {
 
   public username: string;
   public password: string;
+  public firstname: string;
+  public lastname: string;
 
   constructor(private cs_service: ClientSecurityService, private router: Router,
     private modalService: NgbModal, private user_service: UserService
@@ -63,6 +65,44 @@ export class LandingComponent implements OnInit {
   }
 
 
+
+  doSignup() {
+
+    // this will call a login() method from the jwtService
+    // pass the username and password properties to the login() method inside the jwtService
+    let resp = this.cs_service.login("vishal", "pass123")
+
+   // let resp1 = this.cs_service.signup("vishal","pass123");
+    //let resp1 = this.cs_service.signup(this.firstname, this.lastname, this.username, this.password);
+
+
+    resp.subscribe(data => {
+
+      console.log(`data: ${data}`)
+      localStorage.setItem(`token`, `${data}`)
+      //this.triggerLoginModalDismiss()
+      let resp2 =  this.user_service.addUser(this.firstname, this.lastname, this.username, this.password);
+
+      resp.subscribe(data =>{
+        (        data: User) =>
+        console.log(`data : ${data}`)
+        //this.user_service.getUserProps(data);
+        //console.log(`firstname:  ${this.user_service.user.firstname}`)
+      },
+      error =>{
+        console.log(`error`)
+      })
+      this.router.navigate(['/main'])
+
+    },
+    error => {
+      alert("Wrong username/password. Try Again.")
+      this.router.navigate(['/login'])
+    })
+  }
+
+
+
   // all methods for modals toggling
   closeModal!: string;
   triggerLoginModal(content: any) {
@@ -92,33 +132,16 @@ export class LandingComponent implements OnInit {
     }
   }
 
-  /// 2 methods, modal dissmising try
-
-  triggerLoginModalDismiss(){
-    const loginModal = document.getElementById('loginModal')
-    loginModal.toggleAttribute('visible')
-    //toggleBackdropHandler();
-
-    var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
-
-    myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-    })
-
-  }
+  /// modal dissmising try
 
 
+//  @ViewChild("loginModal") loginModal: ElementRef;
 
-  @ViewChild("loginModal") loginModal: ElementRef;
+//   private displayNone(){
+//     console.log(this.loginModal);
+//     let el = this.loginModal.nativeElement;
+//     el.setAttribute('style', 'display: none;  ' );
+//   }
 
-  private displayNone(){
-    console.log(this.loginModal);
-    let el = this.loginModal.nativeElement;
-    el.setAttribute('style', 'display: none;  ' );
-  }
-
-
-  // find user
 
 }

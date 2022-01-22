@@ -29,6 +29,10 @@ export class UserService {
     .pipe(catchError(this.handleError));
   }
 
+  addUser(firstname: string, lastname: string, username: string, password: string){
+
+  }
+
   userLoggedOut(){
     this.user = new User(0, '', '', '', '', []);
   }
