@@ -1,0 +1,38 @@
+<div class="container">
+  <h3>Here is your Reading List</h3>
+
+  <div *ngIf="getUserList().length == 0">
+    Reading List is Empty, add a book <a routerLink="/recommend" class="btn btn-primary">Go to Recommendations</a> <a routerLink="/search" class="btn btn-primary">Go to Search</a> <a routerLink="/all" class="btn btn-primary">Go to All List</a><a routerLink="/main" class="btn btn-primary">Go to Home</a>
+  </div>
+<ngb-accordion>
+
+  <div *ngfor="item in list; index as i">
+
+    <ngb-panel>
+      <ng-template ngbPanelHeader>
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="m-0">{{getBookTitle(i)}} by {{getBookAuthors(i)}}, ID: {{getBookId(i) | json}}</h5>
+          <div>
+            <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <h5 class="card-text">
+              <ul class="list-group">
+                <li class="list-group-item">Languages: {{getBookLanguages(i)}}</li>
+                <li class="list-group-item">Subjects: {{getBookSubjects(i) | json}}</li>
+                <li class="list-group-item">Bookshelves: {{getBookBookshelves(i)}}</li>
+                <li class="list-group-item">Download Count: {{getBookCount(i)}}</li>
+              </ul>
+            </h5>
+            <a href="https://www.gutenberg.org/ebooks/{{getBookId(i)}}" class="btn btn-primary">Go to Book
+              Details</a><a  class="btn btn-primary">Add To Reading List</a>
+      </ng-template>
+    </ngb-panel>
+
+
+  </div>
+</ngb-accordion>
+
+</div>

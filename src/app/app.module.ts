@@ -1,5 +1,6 @@
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgModule } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
@@ -10,15 +11,14 @@ import { MainComponent } from './components/main/main.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AllComponent } from './components/all/all.component';
-
+import { RecommendComponent } from './components/recommend/recommend.component';
+import { ReadingListComponent } from './components/reading-list/reading-list.component';
 import { LandingComponent } from './components/landing/landing.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityComponent } from './components/security/security.component';
 import { FormsModule } from '@angular/forms';
 
-import { ElementRef } from '@angular/core';
-import { ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -29,6 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainComponent,
     FooterComponent,
     AllComponent,
+    RecommendComponent,
+    ReadingListComponent,
     LandingComponent,
     SecurityComponent,
 
@@ -38,12 +40,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule,
+    FormsModule,
 
     ReactiveFormsModule,
-
     FormsModule,
-    HttpClientModule
+    NgbModule
+
 
   ],
   providers: [
