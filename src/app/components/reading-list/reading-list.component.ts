@@ -1,4 +1,5 @@
-import { Book_BE } from './../../models/GutendexryModels';
+import { UserService } from 'src/app/services/user.service';
+import { BookList, Book_BE } from './../../models/GutendexryModels';
 import { BookService } from './../../services/book.service';
 import { Component, OnInit } from '@angular/core';
 import { Person, User, Book } from 'src/app/models/GutendexryModels';
@@ -9,45 +10,65 @@ import { Person, User, Book } from 'src/app/models/GutendexryModels';
   styleUrls: ['./reading-list.component.css'],
 })
 export class ReadingListComponent implements OnInit {
-  // public list: Book[];
+  private userBooks: Book_BE[]
+  public books: Book[]
+  public show = false
 
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService, private userService: UserService) {
+    this.userBooks = this.getUserList()
+    this.getBooks()
+  }
+  getBooks(){
+    this.show = true;
+    this.books= [];
+
+    let targets:number[] =[]
+    for(let b of this.userBooks){
+        targets.push(b.bookid)
+      }
+      let targetString:string = targets.join().toString()
+      console.log(targetString)
+      this.bookService.getBooksByID(targetString).subscribe((data) => {
+        let list:BookList = data
+        let results:Book[] = list.results
+        for(let b of results)
+        this.books.push(b);
+        this.show = false;
+      });
 
   }
 
   ngOnInit(): void {}
 
-  getUserList(): string[] {
-    let result: string[] = [];
+  getUserList(): Book_BE[] {
+    let result: Book_BE[] = [];
+    for(let b of this.userService.user.userbooks){
+      result.push(b)
+    }
+
     return result;
   }
 
-  public getBookId(target: number): string {
-    return '';
+  public getBookProps(target: number, prop:string): string {
+    switch(prop){
+      case 'id':
+        return this.books[target].bookId.toString();
+      case 'subject':
+        return this.books[target].bookSubjects.toString();
+      case 'title':
+        return this.books[target].bookTitle.toString();
+      case 'count':
+        return this.books[target].dlCount.toString();
+      case 'languages':
+        return this.books[target].languages.toString();
+      case 'bookshelves':
+        return this.books[target].bookshelves.toString();
+      case 'authors':
+        return this.books[target].authors.join(", ");
+      case 'translators':
+        return this.books[target].translators.join(", ");
+    }
+    return 'failed to find property'
   }
-  public getBookTitle(target: number): string {
-    return '';
-  }
-  public getBookSubjects(target: number): string {
-    return '';
-  }
-  public getBookBookshelves(target: number): string {
-    return '';
-  }
-  public getBookCount(target: number): string {
-    return '';
-  }
-  public getBookLanguages(target: number): string {
-    return '';
-  }
-  public getBookAuthors(target: number): string[] {
-    let results: string[] = [];
 
-    return [];
-  }
-  public getBookTranslators(target: number): string[] {
-    let results: string[] = [];
-
-    return results;
-  }
 }
