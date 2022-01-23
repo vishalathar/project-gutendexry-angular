@@ -33,9 +33,9 @@ export class BookService {
     return this.http.get<BookList>(`${topicUrl}${search}`).pipe(catchError(this.handleError));
   }
   //Get specific Book Details by ID
-  getBook(id: number): Observable<BookList> {
+  getBooksByID(ids: string): Observable<BookList> {
     return this.http
-      .get<BookList>(`${allUrl}?ids=${id}`)
+      .get<BookList>(`${allUrl}?ids=${ids}`)
       .pipe(catchError(this.handleError));
   }
 

@@ -11,8 +11,6 @@ export class RecommendComponent {
   public book: Book[] = [];
   public selection: string = '';
   show = false;
-  private idList: string[] = []
-  private self = this;
   public bookList!: BookList;
   constructor(private bookService: BookService) {
     this.findFirstBooks()
@@ -55,10 +53,10 @@ export class RecommendComponent {
 
   public findAnyBook() {
     this.show = true;
-    this.book.pop();
+    this.book= [];
 
     let target = this.getRandomInt(0, this.bookList.count);
-    this.bookService.getBook(target).subscribe((data) => {
+    this.bookService.getBooksByID(target.toString()).subscribe((data) => {
       let list:BookList = data
       let results:Book[] = list.results
       this.book.push(results[0]);
