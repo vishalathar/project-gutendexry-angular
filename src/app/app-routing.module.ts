@@ -1,3 +1,4 @@
+import { SearchComponent } from './components/search/search.component';
 import { SecurityComponent } from './components/security/security.component';
 import { AllComponent } from './components/all/all.component';
 import { MainComponent } from './components/main/main.component';
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: 'all', component: AllComponent, canActivate:[AuthGuard]},
   {path: 'recommend', component: RecommendComponent, canActivate:[AuthGuard]},
   {path: 'readlist', component: ReadingListComponent, canActivate:[AuthGuard]},
-
+  {path: 'search', component: SearchComponent, canActivate:[AuthGuard]},
   {path: 'login', component: LandingComponent},
   //{path: 'landing', component: LandingComponent},
   {path: '**', component: MainComponent, canActivate:[AuthGuard]} // this is a wild card, must be last. to handle unknown paths

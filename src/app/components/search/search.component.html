@@ -1,0 +1,64 @@
+<div class="container" style=" text-align: center;">
+  <h1>Search</h1>
+  <h5>By Author Name, by Book Title, By Language </h5>
+  <h5> OR By Any of these Combinations ! </h5>
+    <form class="row g-3 align-items-center">
+
+      <div class="col-md-4">
+        <label for="validationDefault01" class="form-label" value="No Value">By Author Name</label>
+        <input type="text"  [(ngModel)]="authorSelection" name="authorSelection" class="form-control" id="validationDefault01">
+      </div>
+      <div class="col-md-4">
+        <label for="validationDefault02" class="form-label" value="No Value">By Book Title</label>
+        <input type="text"  [(ngModel)]="titleSelection" name="titleSelection" class="form-control" id="validationDefault02">
+      </div>
+     <div class="col-md-4">
+        <label for="validationDefault04" class="form-label">Language</label>
+        <select [(ngModel)]="languageSelection" class="form-select form-select-lg md-selected" type="text" name="languageSelection"
+          aria-label="Language Selector">
+          <option selected value="No Value">Select a language </option>
+          <option value="en">English</option>
+          <option value="fr">French</option>
+          <option value="fi">Finish</option>
+        </select>
+      </div>
+
+
+ <!--     <button type="submit" id="recommendbtn" class="btn btn-primary" (click)="findBookByCatagory()">Submit</button> -->
+      <button type="submit" id="searchbtn" class="btn btn-primary" (click)="searchBooks()">Submit</button>
+
+    </form>
+
+<!--
+
+    <div *ngIf="book.length > 0">
+    <ngb-accordion #a="ngbAccordion" activeIds="one">
+
+      <ngb-panel id="one">
+        <ng-template ngbPanelHeader>
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="m-0">{{getBookTitle()}} by {{getBookAuthors()}}, ID: {{getBookId() | json}}</h5>
+            <div>
+              <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <h5 class="card-text">
+                <ul class="list-group">
+                  <li class="list-group-item">Languages: {{getBookLanguages()}}</li>
+                  <li class="list-group-item">Subjects: {{getBookSubjects() | json}}</li>
+                  <li class="list-group-item">Bookshelves: {{getBookBookshelves() | json}}</li>
+                  <li class="list-group-item">Download Count: {{getBookCount()}}</li>
+                </ul>
+              </h5>
+              <a href="https://www.gutenberg.org/ebooks/{{getBookId()}}" class="btn btn-primary">Go to Book
+                Details</a><a  class="btn btn-primary">Add To Reading List</a>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+
+  -->
+
+</div>
+
