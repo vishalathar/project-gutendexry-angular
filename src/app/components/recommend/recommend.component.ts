@@ -1,6 +1,7 @@
+import { UserService } from 'src/app/services/user.service';
 import { BookService } from './../../services/book.service';
 import { Component } from '@angular/core';
-import { Book, BookList, Person } from 'src/app/models/GutendexryModels';
+import { Book, BookList, Person, User } from 'src/app/models/GutendexryModels';
 
 @Component({
   selector: 'app-recommend',
@@ -11,14 +12,18 @@ export class RecommendComponent {
   public book: Book[] = [];
   public selection: string = '';
   show = false;
-  private idList: string[] = []
-  private self = this;
   public bookList!: BookList;
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService, private userService: UserService) {
     this.findFirstBooks()
   }
 
-
+  addToReadingList(){
+    let user:User = this.userService.user
+    this.userService.addBook(user, Number(this.bookService.getBookProp(this.book[0], 'id'))).subscribe((data) =>{
+      this.userService.getUserProps(data)
+    }
+    )
+  }
 
   findFirstBooks(){
     this.bookService.getTop().subscribe(data =>{this.bookList = data})
@@ -55,10 +60,10 @@ export class RecommendComponent {
 
   public findAnyBook() {
     this.show = true;
-    this.book.pop();
+    this.book= [];
 
     let target = this.getRandomInt(0, this.bookList.count);
-    this.bookService.getBook(target).subscribe((data) => {
+    this.bookService.getBooksByID(target.toString()).subscribe((data) => {
       let list:BookList = data
       let results:Book[] = list.results
       this.book.push(results[0]);

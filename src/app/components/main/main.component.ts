@@ -1,5 +1,6 @@
+import { UserService } from 'src/app/services/user.service';
 import { BookService } from './../../services/book.service';
-import { Book, BookList, Person } from './../../models/GutendexryModels';
+import { Book, BookList, Person, User } from './../../models/GutendexryModels';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientMessage } from 'src/app/models/ClientMessage';
 
@@ -22,17 +23,31 @@ export class MainComponent implements OnInit {
 
   userFirstName = 'firstName';
   userLastName = 'lastName';
-  nameOfUser = this.userFirstName + ' ' +  this.userLastName;
+
 
   public clientMessage: ClientMessage = new ClientMessage('Accessing Book List');
   public bookList!: BookList;
 
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService, private userService: UserService) {
     this.findFirstBooks()
    }
+  findFirstNameOfUser():string {
+    return this.userService.user.firstname;
+  }
+  findLastNameOfUser():string {
+    return this.userService.user.lastname
+  }
 
   findFirstBooks(){
     this.bookService.getTop().subscribe(data =>{this.bookList = data;console.log(this.bookList)})
+  }
+
+  addToReadingList(target:number){
+    let user:User = this.userService.user
+    this.userService.addBook(user, Number(this.bookService.getBookProp(this.bookList.results[target], 'id'))).subscribe((data) =>{
+      this.userService.getUserProps(data)
+    }
+    )
   }
 
   public getBookId(target: number): string{
