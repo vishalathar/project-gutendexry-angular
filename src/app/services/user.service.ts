@@ -1,3 +1,4 @@
+import { Book, Book_BE } from './../models/GutendexryModels';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,6 +11,7 @@ const userUrl = `${url}user`;
   providedIn: 'root'
 })
 export class UserService {
+
 
   public user = new User(0, '', '', '', '', []);
 
@@ -29,7 +31,67 @@ export class UserService {
     .pipe(catchError(this.handleError));
   }
 
-  addUser(firstname: string, lastname: string, username: string, password: string){
+  addUser(firstname: string, lastname: string, username: string, password: string): Observable<User>{
+    let req: any= {
+      "firstName" : firstname,
+      "lastName" : lastname,
+      "password" : password,
+      "username" : username
+    }
+    return this.http.post<User>(`${userUrl}/add`, req);
+  }
+
+  addBook(user: User, book:number): Observable<User>{
+    let req: any= {
+      "id"        : user.userid,
+      "firstName" : user.firstname,
+      "lastName"  : user.lastname,
+      "password"  : user.password,
+      "username"  : user.username,
+      "books"     : [
+        {
+          "id"    : book
+        }
+      ]
+    }
+    console.log(`${userUrl}/addbook`)
+    return this.http.post<User>(`${userUrl}/addbook`, req);
+  }
+
+/*
+{
+  "id": 3,
+  "firstName": "Demo",
+  "lastName": "lastd",
+  "username": "username1",
+  "password": "pass123",
+  "books": [
+      {
+          "id": 1,
+          "owners": [
+              3
+          ]
+      }
+  ]
+}
+*/
+
+  removeBookFromList(user: User, id: string): Observable<User> {
+    let req: any= {
+      "id"        : user.userid,
+      "firstName" : user.firstname,
+      "lastName"  : user.lastname,
+      "password"  : user.password,
+      "username"  : user.username,
+      "books"     : [
+        {
+          "id"    : id
+        }
+      ]
+    }
+    console.log(req)
+    console.log(`${userUrl}/removebook`)
+    return this.http.post<User>(`${userUrl}/removebook`, req);
 
   }
 
@@ -43,6 +105,11 @@ export class UserService {
     let element: any = data;
     for (let prop in element) {
     console.log(`${prop}`)
+    if (prop === "id"){
+      console.log(`prop: ${element[prop]}`)
+      this.user.userid = element[prop];
+       // return element[prop];
+    }
     if (prop === "firstName"){
       console.log(`prop: ${element[prop]}`)
       this.user.firstname = element[prop];
@@ -63,6 +130,7 @@ export class UserService {
 
     // need help at this point
     if (prop === "books"){
+      this.user.userbooks = []
       for(let b of element[prop]){
         for (let bProp in b){
           if(bProp === "id"){
