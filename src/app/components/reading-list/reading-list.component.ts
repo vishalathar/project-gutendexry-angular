@@ -111,7 +111,6 @@ export class ReadingListComponent implements OnInit {
   public getBookAuthors(target: number): string[] {
     let results: string[] = [];
     let authors: Person[] = this.bookService.getBookAuthors(this.books[target]);
-    let author: any;
     authors.forEach((author) => {
       results.push(this.bookService.getPersonProp(author, 'name'));
     });
@@ -122,7 +121,6 @@ export class ReadingListComponent implements OnInit {
     let translators: Person[] = this.bookService.getBookTranslators(
       this.books[target]
     );
-    let translator: any;
     translators.forEach((translator) => {
       results.push(this.bookService.getPersonProp(translator, 'name'));
     });
