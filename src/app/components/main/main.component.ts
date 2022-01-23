@@ -1,6 +1,6 @@
 import { UserService } from 'src/app/services/user.service';
 import { BookService } from './../../services/book.service';
-import { Book, BookList, Person } from './../../models/GutendexryModels';
+import { Book, BookList, Person, User } from './../../models/GutendexryModels';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientMessage } from 'src/app/models/ClientMessage';
 
@@ -40,6 +40,14 @@ export class MainComponent implements OnInit {
 
   findFirstBooks(){
     this.bookService.getTop().subscribe(data =>{this.bookList = data;console.log(this.bookList)})
+  }
+
+  addToReadingList(target:number){
+    let user:User = this.userService.user
+    this.userService.addBook(user, Number(this.bookService.getBookProp(this.bookList.results[target], 'id'))).subscribe((data) =>{
+      this.userService.getUserProps(data)
+    }
+    )
   }
 
   public getBookId(target: number): string{
