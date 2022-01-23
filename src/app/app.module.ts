@@ -20,6 +20,7 @@ import { SecurityComponent } from './components/security/security.component';
 import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReadingListComponent,
     LandingComponent,
     SecurityComponent,
+    SearchComponent,
 
   ],
   imports: [

@@ -1,3 +1,4 @@
+  import { SearchComponent } from './components/search/search.component';
 import { SecurityComponent } from './components/security/security.component';
 import { AllComponent } from './components/all/all.component';
 import { MainComponent } from './components/main/main.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'main', component: MainComponent, canActivate:[AuthGuard]}, // http:localhost:4200/main // route/auth guards canActivate
   {path: 'all', component: AllComponent, canActivate:[AuthGuard]},
+  {path: 'search', component: SearchComponent, canActivate:[AuthGuard]},
   {path: 'recommendations', component: RecommendComponent, canActivate:[AuthGuard]},
   {path: 'readingList', component: ReadingListComponent, canActivate:[AuthGuard]},
 
