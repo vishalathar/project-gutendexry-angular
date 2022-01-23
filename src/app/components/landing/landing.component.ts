@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { ClientSecurityService } from 'src/app/services/client-security.service';
 import { Router } from '@angular/router';
-import { ViewChild, ElementRef } from "@angular/core";
-import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/GutendexryModels';
+import { UserService } from 'src/app/services/user.service';
+import { ClientSecurityService } from 'src/app/services/client-security.service';
 
 
 @Component({
@@ -80,14 +79,13 @@ export class LandingComponent implements OnInit {
 
       console.log(`data: ${data}`)
       localStorage.setItem(`token`, `${data}`)
-      //this.triggerLoginModalDismiss()
       let resp2 =  this.user_service.addUser(this.firstname, this.lastname, this.username, this.password);
 
-      resp.subscribe(data =>{
-        (        data: User) =>
-        console.log(`data : ${data}`)
-        //this.user_service.getUserProps(data);
-        //console.log(`firstname:  ${this.user_service.user.firstname}`)
+      resp2.subscribe(data2 =>{
+        (        data2: User) =>
+        console.log(`data : ${data2}`)
+        this.user_service.getUserProps(data2);
+        console.log(`firstname:  ${this.user_service.user.firstname}`)
       },
       error =>{
         console.log(`error`)
