@@ -4,14 +4,16 @@
   <div *ngIf="getUserList().length == 0">
     Reading List is Empty, add a book <a routerLink="/recommendations" class="btn btn-primary">Go to Recommendations</a> <a routerLink="/search" class="btn btn-primary">Go to Search</a> <a routerLink="/all" class="btn btn-primary">Go to All List</a><a routerLink="/main" class="btn btn-primary">Go to Home</a>
   </div>
-<ngb-accordion>
+  <div *ngIf="getUserList().length > 0">
+    <p>test</p>
+<ngb-accordion *ngFor="let item of books; index as i;">
 
-  <div *ngfor="item in list; index as i">
 
+    <p>test in for</p>
     <ngb-panel>
       <ng-template ngbPanelHeader>
         <div class="d-flex align-items-center justify-content-between">
-          <h5 class="m-0">{{getBookProps(i, 'title')}} by {{getBookProps(i, 'authors')}}, ID: {{getBookProps(i, 'id')}}</h5>
+          <h5 class="m-0">{{getBookTitle(i)}} by {{getBookAuthors(i)}}, ID: {{getBookId(i)}}</h5>
           <div>
             <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
           </div>
@@ -20,19 +22,19 @@
       <ng-template ngbPanelContent>
         <h5 class="card-text">
               <ul class="list-group">
-                <li class="list-group-item">Languages: {{getBookProps(i, 'languages')}}</li>
-                <li class="list-group-item">Subjects: {{getBookProps(i, 'subject')}}</li>
-                <li class="list-group-item">Bookshelves: {{getBookProps(i, 'bookshelves')}}</li>
-                <li class="list-group-item">Download Count: {{getBookProps(i, 'count')}}</li>
+                <li class="list-group-item">Languages: {{getBookLanguages(i)}}</li>
+                <li class="list-group-item">Subjects: {{getBookSubjects(i)}}</li>
+                <li class="list-group-item">Bookshelves: {{getBookBookshelves(i)}}</li>
+                <li class="list-group-item">Download Count: {{getBookCount(i)}}</li>
               </ul>
             </h5>
-            <a href="https://www.gutenberg.org/ebooks/{{getBookProps(i, 'id')}}" class="btn btn-primary">Go to Book
-              Details</a><a  class="btn btn-primary">Add To Reading List</a>
+            <a href="https://www.gutenberg.org/ebooks/{{getBookId(i)}}" class="btn btn-primary">Go to Book
+              Details</a><a  class="btn btn-primary" (click)="removeBook(i)">Remove from Reading List</a>
       </ng-template>
     </ngb-panel>
 
 
-  </div>
-</ngb-accordion>
 
+</ngb-accordion>
+</div>
 </div>

@@ -34,6 +34,7 @@ export class BookService {
   }
   //Get specific Book Details by ID
   getBooksByID(ids: string): Observable<BookList> {
+    console.log(`${allUrl}?ids=${ids}`)
     return this.http
       .get<BookList>(`${allUrl}?ids=${ids}`)
       .pipe(catchError(this.handleError));
