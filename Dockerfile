@@ -1,4 +1,4 @@
-FROM node:12.16.1-alpine As builder
+FROM node:16.13.2-alpine As builder
 
 WORKDIR /usr/src/app
 
@@ -15,7 +15,7 @@ RUN npm run build --prod
 FROM nginx:1.15.8-alpine
 
 # we pass our ditributable artifact to Nginx to host
-COPY --from=builder /usr/src/app/dist/rest-api-frontend/ /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/project-gutendexry/ /usr/share/nginx/html
 
 # To run the container, after building the image,
 # run docker run -p 8080:80 <name-of-image:version>
