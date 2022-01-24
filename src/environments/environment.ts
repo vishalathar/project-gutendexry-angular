@@ -16,4 +16,4 @@ export const environment = {
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
 export const bookUrl = "https://gutendex.com/"
-export const url = "http://team-4-211129.cvtq9j4axrge.us-east-1.rds.amazonaws.com/api/"
+export const url = 'http://gutendexry-env.eba-i9dm6nv5.us-east-2.elasticbeanstalk.com/api/'
