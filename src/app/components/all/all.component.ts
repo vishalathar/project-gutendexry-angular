@@ -1,5 +1,6 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { Book, BookList, Person } from './../../models/GutendexryModels';
+import { Book, BookList, Person, User } from './../../models/GutendexryModels';
 import { BookService } from './../../services/book.service';
 import { ClientMessage } from 'src/app/models/ClientMessage';
 
@@ -22,7 +23,7 @@ export class AllComponent implements OnInit {
 
 
 
-  constructor(public bookService: BookService) {
+  constructor(public bookService: BookService, private userService: UserService) {
     this.findFirstBooks()
    }
 
@@ -105,7 +106,13 @@ export class AllComponent implements OnInit {
       }
 
 
-
+      addToReadingList(){
+        let user:User = this.userService.user
+        this.userService.addBook(user, Number(this.bookService.getBookProp(this.books[0], 'id'))).subscribe((data) =>{
+          this.userService.getUserProps(data)
+        }
+        )
+      }
 
 
   ngOnInit(): void {
