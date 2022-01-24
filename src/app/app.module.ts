@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgModule } from '@angular/core';
 import {Component, ViewEncapsulation} from '@angular/core';
@@ -21,7 +22,6 @@ import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './components/search/search.component';
-
 
 @NgModule({
   declarations: [

@@ -3,7 +3,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/GutendexryModels';
-import { url } from 'src/environments/environment';
+import { url } from 'src/environments/environment.prod';
 
 const userUrl = `${url}user`;
 
