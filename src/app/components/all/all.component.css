@@ -1,5 +1,5 @@
 
-
+/*
 body {
   background: #e35869;
   font-family: 'Rubik', sans-serif;
@@ -100,7 +100,7 @@ body {
 }
 .login-form .action button:nth-child(2):hover {
   background: #3c4d6d;
-}
+} */
 
 .RightButton {
 
@@ -119,4 +119,7 @@ body {
   position:absolute;
   top:1;
   left:0;
+}
+button {
+  margin-bottom: 1%;
 }

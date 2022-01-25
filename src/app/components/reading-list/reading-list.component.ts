@@ -67,29 +67,6 @@ export class ReadingListComponent implements OnInit {
     });
   }
 
-  // public getBookProps(target: number, prop:string): string {
-  //   console.log('printing property')
-  //   switch(prop){
-  //     case 'id':
-  //       return this.bookService.getBookProp(this.books[target], 'bookId');
-  //     case 'subject':
-  //       return this.bookService.getBookProp(this.books[target], 'bookSubjects');
-  //     case 'title':
-  //       return this.bookService.getBookProp(this.books[target], 'bookTitle');
-  //     case 'count':
-  //       return this.bookService.getBookProp(this.books[target], 'dlCount');
-  //     case 'languages':
-  //       return this.bookService.getBookProp(this.books[target], 'languages');
-  //     case 'bookshelves':
-  //       return this.bookService.getBookProp(this.books[target], 'bookshelves');
-  //     case 'authors':
-  //       return this.bookService.getBookProp(this.books[target], 'authors');
-  //     case 'translators':
-  //       return this.bookService.getBookProp(this.books[target], 'translators');
-  //   }
-  //   return 'failed to find property'
-  // }
-
   public getBookId(target: number): string {
     return this.bookService.getBookProp(this.books[target], 'id');
   }
