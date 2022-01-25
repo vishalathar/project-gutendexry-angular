@@ -2,3 +2,20 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 
+body {
+  background-color: #003b3bff;
+  color: #978839ff;
+}
+.btn-primary {
+  background-color: rgb(0, 53, 53);
+  color: #978839ff;
+}
+
+.btn-primary:hover {
+  background-color: #978839ff;
+  color: #003b3bff;
+}
+
+img {
+  background-color: white;
+}
