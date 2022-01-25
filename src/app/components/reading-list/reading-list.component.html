@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Here is your Reading List</h3>
+  <h1 class="text-center">Here is your Reading List</h1>
 
   <div class="row justify-content-center">
     <div class="col-sm-6">
@@ -8,9 +8,6 @@
       </ngb-toast>
     </div>
   </div>
-
-
-
 
   <div *ngIf="getUserList().length > 0">
 
@@ -34,8 +31,11 @@
               <li class="list-group-item">Download Count: {{getBookCount(i)}}</li>
             </ul>
           </h5>
-          <a href="https://www.gutenberg.org/ebooks/{{getBookId(i)}}" class="btn btn-primary">Go to Book
-            Details</a><a class="btn btn-primary" (click)="removeBook(i)">Remove from Reading List</a>
+          <div class="row justify-content-center">
+            <div class="col-md-4 text-center"><a href="https://www.gutenberg.org/ebooks/{{getBookId(i)}}" class="btn btn-primary">Go to Book
+            Details</a></div>
+            <div class="col-md-4 text-center"><a class="btn btn-primary" (click)="removeBook(i)">Remove from Reading List</a></div>
+            </div>
         </ng-template>
       </ngb-panel>
 
@@ -46,7 +46,11 @@
 </div>
 
 <div *ngIf="getUserList().length == 0">
-  Reading List is Empty, add a book <a routerLink="/recommendations" class="btn btn-primary">Go to Recommendations</a>
-  <a routerLink="/search" class="btn btn-primary">Go to Search</a> <a routerLink="/all" class="btn btn-primary">Go to
-    All List</a><a routerLink="/main" class="btn btn-primary">Go to Home</a>
+  <div class="row justify-content-center gy-2">
+    <div class="col text-center"><h3>Your reading List is Empty, add a book</h3></div>
+    <a routerLink="/recommendations" class="btn btn-primary">Go to Recommendations</a>
+    <a routerLink="/search" class="btn btn-primary">Go to Search</a>
+    <a routerLink="/all" class="btn btn-primary">Go to All List</a>
+    <a routerLink="/main" class="btn btn-primary">Go to Home</a>
+    </div>
 </div>

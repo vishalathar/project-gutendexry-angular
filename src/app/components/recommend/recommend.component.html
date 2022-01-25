@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Get a recommendation!</h3>
+  <div class="text-center"><h1>Get a recommendation!</h1></div>
   <div class="container col-md-6 ">
     <form class="align-items-center">
       <select [(ngModel)]="selection" class="form-select form-select-lg md-selected" type="text" name="selection"
@@ -12,9 +12,9 @@
         <option value="Crime">Crime</option>
         <option value="Country">Country</option>
         <option value="Education">Education</option>
-        <!-- <option value="Emmy">Emmy</option> -->
+
         <option value="Fiction">Fiction</option>
-        <option value="FineArts">FineArts</option>
+
         <option value="General">General</option>
         <option value="Geography">Geography</option>
         <option value="History">History</option>
@@ -30,10 +30,10 @@
         <option value="Technology">Technology</option>
         <option value="Wars">Wars</option>
       </select>
-
-      <button type="submit" id="recommendbtn" class="btn btn-primary" (click)="findBookByCatagory()">Submit</button>
-      <button type="submit" id="surprisebtn" class="btn btn-danger" (click)="findAnyBook()">Surprise me!</button>
-
+      <div class="row justify-content-center">
+        <div class="col-md-4 text-center"><button type="submit" id="recommendbtn" class="btn btn-primary" (click)="findBookByCatagory()">Submit</button></div>
+      <div class="col-md-4 text-center"><button type="submit" id="surprisebtn" class="btn btn-danger" (click)="findAnyBook()">Surprise me!</button></div>
+    </div>
     </form>
   </div>
   <div class="row justify-content-center">
@@ -64,8 +64,10 @@
                   <li class="list-group-item">Download Count: {{getBookCount()}}</li>
                 </ul>
               </h5>
-              <a href="https://www.gutenberg.org/ebooks/{{getBookId()}}" class="btn btn-primary" >Go to BookDetails</a>
-              <a  class="btn btn-primary" (click)="addToReadingList()">Add To Reading List</a>
+              <div class="row justify-content-center">
+                <div class="col-md-4 text-center"><a href="https://www.gutenberg.org/ebooks/{{getBookId()}}" class="btn btn-primary float-center" >Go to BookDetails</a></div>
+                <div class="col-md-4 text-center"><a  class="btn btn-primary" (click)="addToReadingList()">Add To Reading List</a></div>
+              </div>
         </ng-template>
       </ngb-panel>
     </ngb-accordion>
