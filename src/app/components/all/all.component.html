@@ -1,8 +1,7 @@
 
-
-  <div>
-    <h2 class="card-header text-center">{{ title }}</h2>
-  </div>
+<div>
+  <h2 class="card-header text-center">{{ title }}</h2>
+</div>
 
   <div class="buttonContainer">
     <button class="TopButton" type="button" (click)="findFirstBooks()">First page</button>
@@ -18,36 +17,25 @@
       <!-- If bookList is not an empty object display this-->
       <div *ngIf="bookList.count >0">
 
-        <ngb-accordion #a="ngbAccordion" activeIds="">
-          <ngb-panel>
-                <ng-template ngbPanelContent>
+        <div class="row justify-content-center">
+          <div class="col-sm-6">
+            <div class="card text-center h-100">
+              <div class="card-body">
+
+
+
                   <ul *ngFor="let item of bookList.results; index as i;" class="list-group">
-                    <!-- <div class="d-flex align-items-center justify-content-between">
-                      <h5 class="m-0">{{getBookTitle(i)}} by {{getBookAuthors(i)}}, ID: {{getBookId(i) | json}}</h5>
-                      <div>
-                        <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2">Details</button>
-                      </div>
-                    </div> -->
-                      <h5 class="card-text">
-                        <ul class="list-group">
-                        <li class="list-group-item">Title: {{ getBookTitle(i) }}</li>
+                  <li class="list-group-item">Title: {{ getBookTitle(i) }}</li>
                   <li class="list-group-item">Id: {{getBookId(i) }}</li>
                   <li class="list-group-item">Authors: {{getBookAuthors(i)  }}</li>
                   <li class="list-group-item">Languages: {{getBookLanguages(i)  }}</li>
 
                   <li class="list-group-item">Bookshelves: {{getBookBookshelves(i)  }}</li>
                   <li class="list-group-item">Download Count: {{getBookCount(i)}}</li>
+                  <li class="list-group-item"><a href="https://www.gutenberg.org/ebooks/{{getBookId(i)  }}" class="btn btn-primary">Go to Book
+                    Details</a></li>
+                  <br />
                 </ul>
-                </h5>
-
-                  <a href="https://www.gutenberg.org/ebooks/{{getBookId(i)}}" class="btn btn-primary">Go to Book
-                    Details</a><a  class="btn btn-primary">Add To Reading List</a>
-                  </ul>
-                </ng-template>
-              </ngb-panel>
-            </ngb-accordion>
-
-
                 <div *ngIf="checkNull('previous') != null">
                 <button class="btn btn-primary" type="button" (click)="previousPage()">previous</button>
               </div>
@@ -55,8 +43,7 @@
                   <button class="btn btn-primary" type="button" (click)="nextPage()">next</button>
                 </div>
 
-
-
-
-
-
+              </div>
+            </div>
+          </div>
+        </div>
