@@ -1,4 +1,3 @@
-import { bookUrl } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -7,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { Book, BookList, Person } from '../models/GutendexryModels';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { bookUrl } from 'src/environments/environment.prod';
 
 const url = `${bookUrl}`;
 const allUrl = `${url}books`;
