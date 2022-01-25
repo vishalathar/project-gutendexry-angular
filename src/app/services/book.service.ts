@@ -11,6 +11,8 @@ import { bookUrl } from 'src/environments/environment.prod';
 const url = `${bookUrl}`;
 const allUrl = `${url}books`;
 const topicUrl = `${allUrl}?topic=`;
+const searchUrl = `${url}books?`;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,6 +34,11 @@ export class BookService {
   getTopTopicSearchPage(search:string): Observable<BookList> {
     return this.http.get<BookList>(`${topicUrl}${search}`).pipe(catchError(this.handleError));
   }
+
+  getTopSearchByUserChoice(search: string): Observable<BookList> {
+    return this.http.get<BookList>(`${searchUrl}${search}`).pipe(catchError(this.handleError));
+  }
+
   //Get specific Book Details by ID
   getBooksByID(ids: string): Observable<BookList> {
     console.log(`${allUrl}?ids=${ids}`)
